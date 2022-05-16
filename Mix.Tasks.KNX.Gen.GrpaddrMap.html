@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.28.4">
     <meta name="project" content="knxex v0.1.0">
 
-    <title>404 — knxex v0.1.0</title>
+    <title>mix knx.gen.grpaddr_map — knxex v0.1.0</title>
     <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
 
     <script src="dist/sidebar_items-74edf8b026.js"></script>
@@ -18,7 +18,7 @@
 
 
   </head>
-  <body data-type="extras">
+  <body data-type="tasks">
     <script>
 
       try {
@@ -95,15 +95,85 @@ knxex
   <span class="sr-only">Settings</span>
 </button>
 
-  <span>Page not found</span>
+
+  <span translate="no">mix knx.gen.grpaddr_map</span> 
+  <small class="app-vsn" translate="no">(knxex v0.1.0)</small>
+
 </h1>
 
-<p>Sorry, but the page you were trying to get to, does not exist. You
-may want to try searching this site using the sidebar
 
-  or using our <a href="api-reference.html">API Reference</a> page
+  <section id="moduledoc">
+<p>Reads the given KNX ETS project and generates a map of all group addresses to their Datapoint Type (DPT).
+This map can be used for the KNX Tunnel server.</p><p>Group addresses that do not specify a DPT are ignored.</p><p>The first argument must be given to specify the path to the ETS project.
+The second argument can be given to specify the path where to store the map (in <a href="https://hexdocs.pm/elixir/Inspect.html"><code class="inline">Inspect</code></a> format). If no target is given, the map is printed to stdout.</p><p>Info output is only generated when map is written to file, and not to stdout.</p>
+  </section>
 
-to find what you were looking for.</p>
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#run/1" translate="no">run(args)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Callback implementation for <a href="https://hexdocs.pm/mix/Mix.Task.html#c:run/1"><code class="inline">Mix.Task.run/1</code></a>.</p></div>
+
+      </div>
+
+  </div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="run/1">
+
+  <div class="detail-header">
+    <a href="#run/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">run(args)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> run(<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Callback implementation for <a href="https://hexdocs.pm/mix/Mix.Task.html#c:run/1"><code class="inline">Mix.Task.run/1</code></a>.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
       <footer class="footer">
 
         <p>

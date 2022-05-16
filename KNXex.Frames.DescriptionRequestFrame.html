@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.28.4">
     <meta name="project" content="knxex v0.1.0">
 
-    <title>404 — knxex v0.1.0</title>
+    <title>KNXex.Frames.DescriptionRequestFrame — knxex v0.1.0</title>
     <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
 
     <script src="dist/sidebar_items-74edf8b026.js"></script>
@@ -18,7 +18,7 @@
 
 
   </head>
-  <body data-type="extras">
+  <body data-type="modules">
     <script>
 
       try {
@@ -95,15 +95,87 @@ knxex
   <span class="sr-only">Settings</span>
 </button>
 
-  <span>Page not found</span>
+
+  <span translate="no">KNXex.Frames.DescriptionRequestFrame</span> 
+  <small class="app-vsn" translate="no">(knxex v0.1.0)</small>
+
 </h1>
 
-<p>Sorry, but the page you were trying to get to, does not exist. You
-may want to try searching this site using the sidebar
 
-  or using our <a href="api-reference.html">API Reference</a> page
+  <section id="moduledoc">
+<p>KNX Description Request Frame.</p><p>This frame does have a frame encoder implementation.</p>
+  </section>
 
-to find what you were looking for.</p>
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#t:t/0" translate="no">t()</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Represents a KNX Description Request frame.</p></div>
+
+      </div>
+
+  </div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Types
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">t()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> t() :: %KNXex.Frames.DescriptionRequestFrame{
+  ip: <a href="https://www.erlang.org/doc/man/inet.html#type-ip4_address">:inet.ip4_address</a>(),
+  port: <a href="https://www.erlang.org/doc/man/inet.html#type-port_number">:inet.port_number</a>(),
+  protocol: :ipv4_udp | :ipv4_tcp
+}</pre>
+
+      </div>
+
+<p>Represents a KNX Description Request frame.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
       <footer class="footer">
 
         <p>

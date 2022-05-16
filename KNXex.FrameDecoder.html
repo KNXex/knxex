@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.28.4">
     <meta name="project" content="knxex v0.1.0">
 
-    <title>404 — knxex v0.1.0</title>
+    <title>KNXex.FrameDecoder — knxex v0.1.0</title>
     <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
 
     <script src="dist/sidebar_items-74edf8b026.js"></script>
@@ -18,7 +18,7 @@
 
 
   </head>
-  <body data-type="extras">
+  <body data-type="modules">
     <script>
 
       try {
@@ -95,15 +95,87 @@ knxex
   <span class="sr-only">Settings</span>
 </button>
 
-  <span>Page not found</span>
+
+  <span translate="no">KNXex.FrameDecoder</span> 
+  <small class="app-vsn" translate="no">(knxex v0.1.0)</small>
+
 </h1>
 
-<p>Sorry, but the page you were trying to get to, does not exist. You
-may want to try searching this site using the sidebar
 
-  or using our <a href="api-reference.html">API Reference</a> page
+  <section id="moduledoc">
+<p>This module contains all the binary matching logic for the KNX frames (inlined through macros from the actual frame modules).</p><p>Frames that are inlined into this module (using <code class="inline">use</code>), have to implement the <a href="#decode_frame/3"><code class="inline">decode_frame/3</code></a> function with binary matching in the header.</p>
+  </section>
 
-to find what you were looking for.</p>
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#decode_frame/3" translate="no">decode_frame(arg1, arg2, arg3)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Decodes a KNX frame from a binary string.</p></div>
+
+      </div>
+
+  </div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="decode_frame/3">
+
+  <div class="detail-header">
+    <a href="#decode_frame/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">decode_frame(arg1, arg2, arg3)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> decode_frame(
+  protocol_version :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(),
+  request_type :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(),
+  data :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">bitstring</a>()
+) :: {:ok, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">struct</a>()} | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()} | :ignore</pre>
+
+      </div>
+
+<p>Decodes a KNX frame from a binary string.</p><p><code class="inline">:ignore</code> will be returned as a default fallback, if no frame decoder matches.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
       <footer class="footer">
 
         <p>

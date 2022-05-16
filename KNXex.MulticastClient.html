@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.28.4">
+    <meta name="project" content="knxex v0.1.0">
+
+    <title>KNXex.MulticastClient — knxex v0.1.0</title>
+    <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
+
+    <script src="dist/sidebar_items-74edf8b026.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-bd1cb213813bf4825aa2.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+
+<section class="sidebar">
+  <button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+    <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+  </button>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="api-reference.html" class="sidebar-projectName" translate="no">
+knxex
+      </a>
+      <strong class="sidebar-projectVersion" translate="no">
+        v0.1.0
+      </strong>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+        <li><a id="tasks-list-link" href="#full-list"><span translate="no">Mix</span> Tasks</a></li>
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="settings display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+  <span translate="no">KNXex.MulticastClient</span> 
+  <small class="app-vsn" translate="no">(knxex v0.1.0)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>KNXnet/IP Multicast Client.</p><p>The KNX Multicast Client uses multicast to send and receive KNX telegrams (or any other KNX frame).
+The Client adds its membership to the multicast group and listens for incoming telegrams.</p><p>Outgoing KNX frames are sent using multicast, too. The KNX/IP router must be correctly configured to forward the KNX frame to their KNX/TP connection.
+You may have multiple for each area or line, so the correct KNX/IP router, that should forward the KNX frame, must have the filter table correctly configured.</p><p>Each function takes an <code class="inline">opts</code> keyword list, which can have an optional <code class="inline">:name</code> option, which is then used
+to call the <code class="inline">MulticastClient</code> identified by the <code class="inline">:name</code> (a PID or registered name), and an optional <code class="inline">:timeout</code> option (defaults to 5000).</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#add_group_address/3" translate="no">add_group_address(group_address, dpt, opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Adds the given group address with the datapoint type (DPT) to the group address list.
+Unknown group addresses can not be used to send or receive telegrams.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#child_spec/1" translate="no">child_spec(init_arg)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Returns a specification to start this module under a supervisor.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#get_group_addresses/1" translate="no">get_group_addresses(opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Gets all group addresses from the state.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#read_group_address/2" translate="no">read_group_address(group_address, opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Sends a <code class="inline">GroupValueRead</code> to <code class="inline">group_address</code>. Waits up to <code class="inline">get_opts_timeout()</code> for the response.
+Utilizes a <a href="https://hexdocs.pm/elixir/Task.html"><code class="inline">Task</code></a> to subscribe temporarily to events.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#remove_group_address/2" translate="no">remove_group_address(group_address, opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Removes the given group address from the group address list.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#send_frame/2" translate="no">send_frame(frame, opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Sends a raw frame. The frame body must be binary or have a <code class="inline">FrameEncoder</code> implementation.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#start_link/1" translate="no">start_link(opts)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Starts the KNXnet/IP Multicast Client.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#subscribe/2" translate="no">subscribe(pid, opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Subscribes to telegram notifications. The subscriber will receive messages in the form <code class="inline">{:knx, KNXex.Telegram.t()}</code>.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#unsubscribe/2" translate="no">unsubscribe(pid, opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Unsubscribes from telegram notifications.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#write_group_address/3" translate="no">write_group_address(group_address, value, opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Encodes <code class="inline">value</code> according to the DPT of the <code class="inline">group_address</code>, and sends it in a <code class="inline">GroupValueWrite</code> to <code class="inline">group_address</code>.</p></div>
+
+      </div>
+
+  </div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="add_group_address/3">
+
+    <span id="add_group_address/2"></span>
+
+  <div class="detail-header">
+    <a href="#add_group_address/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">add_group_address(group_address, dpt, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> add_group_address(<a href="KNXex.GroupAddress.html#t:t/0">KNXex.GroupAddress.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Adds the given group address with the datapoint type (DPT) to the group address list.
+Unknown group addresses can not be used to send or receive telegrams.</p><p>The DPT is in the form of &quot;x.yyy&quot; where x and y are numbers, i.e. <code class="inline">1.001</code>.</p>
+  </section>
+</section>
+<section class="detail" id="child_spec/1">
+
+  <div class="detail-header">
+    <a href="#child_spec/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">child_spec(init_arg)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Returns a specification to start this module under a supervisor.</p><p>See <a href="https://hexdocs.pm/elixir/Supervisor.html"><code class="inline">Supervisor</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_group_addresses/1">
+
+    <span id="get_group_addresses/0"></span>
+
+  <div class="detail-header">
+    <a href="#get_group_addresses/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">get_group_addresses(opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_group_addresses(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) ::
+  {:ok, %{optional(address :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) =&gt; dpt :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()}}</pre>
+
+      </div>
+
+<p>Gets all group addresses from the state.</p>
+  </section>
+</section>
+<section class="detail" id="read_group_address/2">
+
+    <span id="read_group_address/1"></span>
+
+  <div class="detail-header">
+    <a href="#read_group_address/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">read_group_address(group_address, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> read_group_address(<a href="KNXex.GroupAddress.html#t:t/0">KNXex.GroupAddress.t</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) ::
+  {:ok, <a href="KNXex.Telegram.html#t:t/0">KNXex.Telegram.t</a>()}
+  | {:error, :unknown_group_address}
+  | {:error, :timeout}</pre>
+
+      </div>
+
+<p>Sends a <code class="inline">GroupValueRead</code> to <code class="inline">group_address</code>. Waits up to <code class="inline">get_opts_timeout()</code> for the response.
+Utilizes a <a href="https://hexdocs.pm/elixir/Task.html"><code class="inline">Task</code></a> to subscribe temporarily to events.</p>
+  </section>
+</section>
+<section class="detail" id="remove_group_address/2">
+
+    <span id="remove_group_address/1"></span>
+
+  <div class="detail-header">
+    <a href="#remove_group_address/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">remove_group_address(group_address, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> remove_group_address(<a href="KNXex.GroupAddress.html#t:t/0">KNXex.GroupAddress.t</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Removes the given group address from the group address list.</p>
+  </section>
+</section>
+<section class="detail" id="send_frame/2">
+
+    <span id="send_frame/1"></span>
+
+  <div class="detail-header">
+    <a href="#send_frame/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">send_frame(frame, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> send_frame(<a href="KNXex.Frame.html#t:t/0">KNXex.Frame.t</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: :ok | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+
+      </div>
+
+<p>Sends a raw frame. The frame body must be binary or have a <code class="inline">FrameEncoder</code> implementation.</p><p>If the frame body is a frame, the <code class="inline">request_type</code> can be set to <code class="inline">:auto</code> and it will be derived from the <code class="inline">FrameEncoder</code> implementation.</p>
+  </section>
+</section>
+<section class="detail" id="start_link/1">
+
+  <div class="detail-header">
+    <a href="#start_link/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">start_link(opts)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> start_link(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: {:ok, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()} | {:error, {:already_started, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()}}</pre>
+
+      </div>
+
+<p>Starts the KNXnet/IP Multicast Client.</p><p>The following options are available (some are required):</p><ul><li><p><code class="inline">allow_unknown_gpa: boolean()</code> - Optional. Determines whether unknown Group Addresses are allowed (not ignored when received, defaults to <code class="inline">false</code>).
+This will also mean that you receive the raw undecoded value and you need to provide the raw encoded value when sending.</p></li><li><p><code class="inline">frame_callback: (KNXex.Frame.t(), :handled | unhandled) -&gt; any()</code> - Optional. A callback module can be specified,
+that will be called for all frames which are not explicitely handled by this server module.
+Two arity: (KNXex.Frame.t(), :handled | :unhandled) - :handled for frames handled by this server module.</p></li><li><p><code class="inline">group_addresses: map()</code> - Required. Group addresses map, where the key is the group address in <code class="inline">x/y/z</code> notation
+and the value is the DPT (datapoint type) - both being <code class="inline">String.t()</code>.
+The group address and its DPT is required to determine how to encode and decode received values.</p></li><li><p><code class="inline">local_ip: :inet.ip4_address()</code> - Optional. The local IP address to use. If nil, the local IP address will be discovered.</p></li><li><p><code class="inline">multicast_ip: :inet.ip4_address()</code> - Optional. The multicast IP address to use. If nil, it will default to <code class="inline">224.0.23.12</code>.</p></li><li><p><code class="inline">source_address: KNXex.IndividualAddress.t()</code> - Required. The KNX individual address that will be used as source address for all non-raw frames.
+The source address is required, as the KNX/IP router does not fill it in, if the source is <code class="inline">0.0.0</code> (it is transmitted as-is to the KNX bus).</p></li></ul><p>All other given options are passed to the <a href="https://hexdocs.pm/elixir/GenServer.html"><code class="inline">GenServer</code></a> module (i.e. <code class="inline">:name</code> can be given to override the process name to register).</p>
+  </section>
+</section>
+<section class="detail" id="subscribe/2">
+
+    <span id="subscribe/1"></span>
+
+  <div class="detail-header">
+    <a href="#subscribe/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">subscribe(pid, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> subscribe(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Subscribes to telegram notifications. The subscriber will receive messages in the form <code class="inline">{:knx, KNXex.Telegram.t()}</code>.</p>
+  </section>
+</section>
+<section class="detail" id="unsubscribe/2">
+
+    <span id="unsubscribe/1"></span>
+
+  <div class="detail-header">
+    <a href="#unsubscribe/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">unsubscribe(pid, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> unsubscribe(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Unsubscribes from telegram notifications.</p>
+  </section>
+</section>
+<section class="detail" id="write_group_address/3">
+
+    <span id="write_group_address/2"></span>
+
+  <div class="detail-header">
+    <a href="#write_group_address/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">write_group_address(group_address, value, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> write_group_address(<a href="KNXex.GroupAddress.html#t:t/0">KNXex.GroupAddress.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) ::
+  {:ok, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">reference</a>()} | {:error, :unknown_group_address}</pre>
+
+      </div>
+
+<p>Encodes <code class="inline">value</code> according to the DPT of the <code class="inline">group_address</code>, and sends it in a <code class="inline">GroupValueWrite</code> to <code class="inline">group_address</code>.</p><p>The returned reference is currently without any meaning to the user.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+
+        <p>
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.28.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

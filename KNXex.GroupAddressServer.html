@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.28.4">
+    <meta name="project" content="knxex v0.1.0">
+
+    <title>KNXex.GroupAddressServer — knxex v0.1.0</title>
+    <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
+
+    <script src="dist/sidebar_items-74edf8b026.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-bd1cb213813bf4825aa2.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+
+<section class="sidebar">
+  <button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+    <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+  </button>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="api-reference.html" class="sidebar-projectName" translate="no">
+knxex
+      </a>
+      <strong class="sidebar-projectVersion" translate="no">
+        v0.1.0
+      </strong>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+        <li><a id="tasks-list-link" href="#full-list"><span translate="no">Mix</span> Tasks</a></li>
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="settings display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+  <span translate="no">KNXex.GroupAddressServer</span> 
+  <small class="app-vsn" translate="no">(knxex v0.1.0)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>The KNX Group Address Server listens for KNX group telegrams and stores their values.</p><p>The group addresses must be known by this server and the KNX client, in order to be able
+to decode and encode the value. Unknown group addresses by this server are ignored, even
+if received and decoded by the KNX client.</p><p>Group addresses without a type found in the <code class="inline">:ets_project</code> are filtered out. In other cases,
+where group addresses is explicitely given, an exception is raised.</p><p>The server can read all relevant group addresses from the KNX bus on startup to hydrate the values.
+To avoid reading group addresses on startup from the KNX bus, an alternative approach to hydrate
+the group addresses state can be provided by the <code class="inline">hydratation_state</code> option.
+During hydration, the server does not answer any requests.</p><p>This server uses one ETS table to store the data.
+Multiple instances of this server should be carefully considered, as the ETS table is shared.</p><p>Each function takes an <code class="inline">opts</code> keyword list, which can have an optional <code class="inline">:name</code> option, which is then used
+to call the <code class="inline">MulticastClient</code> identified by the <code class="inline">:name</code> (a PID or registered name), and an optional <code class="inline">:timeout</code> option (defaults to 5000).</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#t:hydration_state_item/0" translate="no">hydration_state_item()</a>
+
+        </div>
+
+      </div>
+
+  </div>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#add/3" translate="no">add(group_address, dpt, opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Adds the given group address with the datapoint type (DPT) to the group address list.
+Unknown group addresses can not be used to send or receive telegrams.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#child_spec/1" translate="no">child_spec(init_arg)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Returns a specification to start this module under a supervisor.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#create_ets_table/0" translate="no">create_ets_table()</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Creates the ETS table. The current process will be the owner of the table.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#filter_gpa_hydration_by_read_flag/2" translate="no">filter_gpa_hydration_by_read_flag(ets_project, opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>This is a helper function that takes an ETS project struct, optionally the path to the ETS project file,
+and whether group addresses which have an unknown <code class="inline">read</code> flag should be read from the KNX bus.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#get_group_addresses/0" translate="no">get_group_addresses()</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Gets all group addresses from the ETS table.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#read/2" translate="no">read(group_address, opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Reads the group address from the ETS table.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#remove/1" translate="no">remove(group_address)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Removes the given group address from the group address list.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#start_link/1" translate="no">start_link(opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Starts a new Group Address Server.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#subscribe/2" translate="no">subscribe(pid, opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Sets the subscriber to the given PID. The PID is not checked for aliveness.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#to_hydration_state/0" translate="no">to_hydration_state()</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Converts the current ETS table state into an usable hydration state. Group addresses without a value are skipped.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#unsubscribe/2" translate="no">unsubscribe(pid, opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Unsets the subscriber. The first argument is ignored and only for compatibility.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#wait_for_startup/1" translate="no">wait_for_startup(opts)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Waits for the startup sequence to complete. This will block indefinitely until the server replies.
+This is useful during hydration, to wait until the hydration is completed and available to answer requests.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#write/3" translate="no">write(group_address, value, opts \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Writes the group address. The value is written to the KNX bus and then stored in the ETS table.</p></div>
+
+      </div>
+
+  </div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Types
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:hydration_state_item/0">
+
+  <div class="detail-header">
+    <a href="#t:hydration_state_item/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">hydration_state_item()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> hydration_state_item() ::
+  {address :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), value :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}
+  | {address :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), value :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), timestamp_seconds :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="add/3">
+
+    <span id="add/2"></span>
+
+  <div class="detail-header">
+    <a href="#add/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">add(group_address, dpt, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> add(<a href="KNXex.GroupAddress.html#t:t/0">KNXex.GroupAddress.t</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Adds the given group address with the datapoint type (DPT) to the group address list.
+Unknown group addresses can not be used to send or receive telegrams.</p><p>The DPT is in the form of &quot;x.yyy&quot; where x and y are numbers, i.e. <code class="inline">1.001</code>.</p><p>The following options are additionally supported:</p><ul><li><code class="inline">hydrate: boolean()</code> - Optional. Specifies whether the group address should be read to hydrate the value (defaults to <code class="inline">false</code>).</li></ul>
+  </section>
+</section>
+<section class="detail" id="child_spec/1">
+
+  <div class="detail-header">
+    <a href="#child_spec/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">child_spec(init_arg)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Returns a specification to start this module under a supervisor.</p><p>See <a href="https://hexdocs.pm/elixir/Supervisor.html"><code class="inline">Supervisor</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="create_ets_table/0">
+
+  <div class="detail-header">
+    <a href="#create_ets_table/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">create_ets_table()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> create_ets_table() :: <a href="https://www.erlang.org/doc/man/ets.html#type-tid">:ets.tid</a>()</pre>
+
+      </div>
+
+<p>Creates the ETS table. The current process will be the owner of the table.</p><p>The table should be created before starting the server, if multiple are started.
+This would prevent losing the whole table if one server crashes.</p><p>The ETS table will be automatically created in the server process, if it does not exist, however.</p><p>If the ETS table already exists, the table identifier will be returned. The owner is not modified.</p>
+  </section>
+</section>
+<section class="detail" id="filter_gpa_hydration_by_read_flag/2">
+
+    <span id="filter_gpa_hydration_by_read_flag/1"></span>
+
+  <div class="detail-header">
+    <a href="#filter_gpa_hydration_by_read_flag/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">filter_gpa_hydration_by_read_flag(ets_project, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> filter_gpa_hydration_by_read_flag(<a href="KNXex.EtsProject.html#t:t/0">KNXex.EtsProject.t</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: [
+  group_address :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()
+]</pre>
+
+      </div>
+
+<p>This is a helper function that takes an ETS project struct, optionally the path to the ETS project file,
+and whether group addresses which have an unknown <code class="inline">read</code> flag should be read from the KNX bus.</p><p>The ETS project file MUST exist, as it must be read from disk to read the manufacturer data.</p><p>As output you will receive a list of group addresses that can be read from the KNX bus, optionally
+with group addresses that may be readable.</p><p>The following optional options can be given:</p><ul><li><p><code class="inline">allow_nil: boolean()</code> - Whether group addresses that have an unknown <code class="inline">read</code> flag should be read from the KNX bus (defaults to <code class="inline">true</code>).</p></li><li><p><code class="inline">manufacturer_map: map()</code> - A map from <a href="KNXex.ProjectParser.html#parse_manufacturers/2"><code class="inline">KNXex.ProjectParser.parse_manufacturers/2</code></a>, if it has already been done before.
+This helps not having to parse the ETS project file again. If not given, it will be parsed from the ETS project file.</p></li><li><p><code class="inline">path: String.t()</code> - The path to the ETS project file. If not given, the path from the ETS project struct is used.</p></li></ul><p>All other given elements in <code class="inline">opts</code> are passed to <a href="KNXex.ProjectParser.html#parse_manufacturers/2"><code class="inline">KNXex.ProjectParser.parse_manufacturers/2</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_group_addresses/0">
+
+  <div class="detail-header">
+    <a href="#get_group_addresses/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">get_group_addresses()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_group_addresses() :: [<a href="KNXex.GroupAddressServer.GroupAddressData.html#t:t/0">KNXex.GroupAddressServer.GroupAddressData.t</a>()]</pre>
+
+      </div>
+
+<p>Gets all group addresses from the ETS table.</p>
+  </section>
+</section>
+<section class="detail" id="read/2">
+
+    <span id="read/1"></span>
+
+  <div class="detail-header">
+    <a href="#read/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">read(group_address, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> read(<a href="KNXex.GroupAddress.html#t:t/0">KNXex.GroupAddress.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok,
+   %KNXex.GroupAddressServer.GroupAddressData{
+     address: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+     last_update: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+     name: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+     type: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+     value: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()
+   }}
+  | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+
+      </div>
+
+<p>Reads the group address from the ETS table.</p><p>If specified, the value will be read from the KNX bus, if the value is <code class="inline">nil</code>.
+The function can also be instructed to read the value from the KNX bus,
+regardless whether the value is available or not.</p><p>The following options are additionally supported:</p><ul><li><code class="inline">force_value_read: boolean()</code> - Optional. Specifies whether the group address must be read from the KNX bus before returning it (defaults to <code class="inline">false</code>).</li><li><code class="inline">read_value_on_nil: boolean()</code> - Optional. Specifies whether the group address is read from the KNX bus before returning, if the value is nil (defaults to <code class="inline">false</code>).</li></ul>
+  </section>
+</section>
+<section class="detail" id="remove/1">
+
+  <div class="detail-header">
+    <a href="#remove/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">remove(group_address)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> remove(<a href="KNXex.GroupAddress.html#t:t/0">KNXex.GroupAddress.t</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Removes the given group address from the group address list.</p>
+  </section>
+</section>
+<section class="detail" id="start_link/1">
+
+    <span id="start_link/0"></span>
+
+  <div class="detail-header">
+    <a href="#start_link/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">start_link(opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> start_link(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: {:ok, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()} | {:error, {:already_started, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()}}</pre>
+
+      </div>
+
+<p>Starts a new Group Address Server.</p><p>The group addresses with their name and type is read from the ETS project file (.knxproj export).</p><p>The following options are available (some are required):</p><ul><li><p><code class="inline">ets_project: KNXex.EtsProject.t() | path :: binary()</code> - Required. The ETS project to use, or the path to the ETS project file.</p></li><li><p><code class="inline">hydrate_on_start: boolean() | [address :: binary()]</code> - Optional. Whether to hydrate the group addresses state on startup, by reading the group addresses from the KNX bus.
+If <code class="inline">true</code>, all group addresses are read. If a list of group addresses is given (in <code class="inline">x/y/z</code> format), only those are read.</p></li><li><code class="inline">hydration_state: [hydration_state_item()]</code> - Optional. The hydration state to use when hydrating the group addresses state on startup.
+If not given and <code class="inline">hydrate_on_start</code> is given, the hydration state is read from the KNX bus.</li><li><code class="inline">hydration_timeout: pos_integer()</code> - Optional. The timeout used when hydrating the state from the KNX bus (defaults to <code class="inline">5000</code>ms).</li><li><p><code class="inline">knx_interface: module() | {module(), atom() | pid()}</code> - Required. The KNX interface to use. The module name or a tuple of module name and PID/registered name.
+The only supported KNX interface modules are <code class="inline">MulticastClient</code> and <code class="inline">TunnelClient</code> currently.</p></li></ul>
+  </section>
+</section>
+<section class="detail" id="subscribe/2">
+
+    <span id="subscribe/1"></span>
+
+  <div class="detail-header">
+    <a href="#subscribe/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">subscribe(pid, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> subscribe(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Sets the subscriber to the given PID. The PID is not checked for aliveness.</p><p>Only a single subscriber is supported. This function is used with the <code class="inline">GenStageProducer</code>.</p>
+  </section>
+</section>
+<section class="detail" id="to_hydration_state/0">
+
+  <div class="detail-header">
+    <a href="#to_hydration_state/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">to_hydration_state()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> to_hydration_state() :: [<a href="#t:hydration_state_item/0">hydration_state_item</a>()]</pre>
+
+      </div>
+
+<p>Converts the current ETS table state into an usable hydration state. Group addresses without a value are skipped.</p>
+  </section>
+</section>
+<section class="detail" id="unsubscribe/2">
+
+    <span id="unsubscribe/1"></span>
+
+  <div class="detail-header">
+    <a href="#unsubscribe/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">unsubscribe(pid, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> unsubscribe(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Unsets the subscriber. The first argument is ignored and only for compatibility.</p><p>This function is used with the <code class="inline">GenStageProducer</code>.</p>
+  </section>
+</section>
+<section class="detail" id="wait_for_startup/1">
+
+  <div class="detail-header">
+    <a href="#wait_for_startup/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">wait_for_startup(opts)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> wait_for_startup(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Waits for the startup sequence to complete. This will block indefinitely until the server replies.
+This is useful during hydration, to wait until the hydration is completed and available to answer requests.</p>
+  </section>
+</section>
+<section class="detail" id="write/3">
+
+    <span id="write/2"></span>
+
+  <div class="detail-header">
+    <a href="#write/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">write(group_address, value, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> write(<a href="KNXex.GroupAddress.html#t:t/0">KNXex.GroupAddress.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: :ok | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+
+      </div>
+
+<p>Writes the group address. The value is written to the KNX bus and then stored in the ETS table.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+
+        <p>
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.28.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.28.4">
     <meta name="project" content="knxex v0.1.0">
 
-    <title>404 — knxex v0.1.0</title>
+    <title>KNXex.EtsProject.Manufacturer.Hardware — knxex v0.1.0</title>
     <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
 
     <script src="dist/sidebar_items-74edf8b026.js"></script>
@@ -18,7 +18,7 @@
 
 
   </head>
-  <body data-type="extras">
+  <body data-type="modules">
     <script>
 
       try {
@@ -95,15 +95,97 @@ knxex
   <span class="sr-only">Settings</span>
 </button>
 
-  <span>Page not found</span>
+
+  <span translate="no">KNXex.EtsProject.Manufacturer.Hardware</span> 
+  <small class="app-vsn" translate="no">(knxex v0.1.0)</small>
+
 </h1>
 
-<p>Sorry, but the page you were trying to get to, does not exist. You
-may want to try searching this site using the sidebar
 
-  or using our <a href="api-reference.html">API Reference</a> page
+  <section id="moduledoc">
+<p>KNX manufacturer hardware.</p>
+  </section>
 
-to find what you were looking for.</p>
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#t:t/0" translate="no">t()</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Represents KNX manufacturer hardware.</p></div>
+
+      </div>
+
+  </div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Types
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">t()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> t() :: %KNXex.EtsProject.Manufacturer.Hardware{
+  bus_current: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pos_integer</a>() | nil,
+  hardware2programs:
+    <a href="KNXex.EtsProject.Manufacturer.Hardware.Hardware2Program.html#t:t/0">KNXex.EtsProject.Manufacturer.Hardware.Hardware2Program.t</a>(),
+  has_application_program: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>() | nil,
+  has_individual_address: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>() | nil,
+  id: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  is_coupler: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>() | nil,
+  is_ip_enabled: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>() | nil,
+  is_power_supply: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>() | nil,
+  name: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  products: <a href="KNXex.EtsProject.Manufacturer.Hardware.Product.html#t:t/0">KNXex.EtsProject.Manufacturer.Hardware.Product.t</a>(),
+  serialnum: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  version: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()
+}</pre>
+
+      </div>
+
+<p>Represents KNX manufacturer hardware.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
       <footer class="footer">
 
         <p>
