@@ -1,8 +1,8 @@
-defmodule KnxexIpTest do
+defmodule KNXexTest do
   use ExUnit.Case
-  doctest KnxexIp
+  doctest KNXex
 
   test "greets the world" do
-    assert KnxexIp.hello() == :world
+    assert KNXex.hello() == :world
   end
 end

@@ -1,9 +1,9 @@
-defmodule KNXexIP.MixProject do
+defmodule KNXex.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :knxex_ip,
+      app: :knxex,
       version: "0.1.0",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
