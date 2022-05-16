@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.28.4">
+    <meta name="project" content="knxex_ip v0.1.0">
+
+    <title>KNXexIP.CEMIControlField — knxex_ip v0.1.0</title>
+    <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
+
+    <script src="dist/sidebar_items-2454bd010d.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-bd1cb213813bf4825aa2.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+
+<section class="sidebar">
+  <button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+    <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+  </button>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="api-reference.html" class="sidebar-projectName" translate="no">
+knxex_ip
+      </a>
+      <strong class="sidebar-projectVersion" translate="no">
+        v0.1.0
+      </strong>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="settings display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+  <span translate="no">KNXexIP.CEMIControlField</span> 
+  <small class="app-vsn" translate="no">(knxex_ip v0.1.0)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>KNX Common External Message Interface Control Field (cEMI).</p><p>The cEMI control field has the following structure and bit order:</p><pre><code class="makeup elixir" translate="no"><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">-</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">-</span><span class="o">+</span><span class="w">
+</span><span class="o">|</span><span class="w"> </span><span class="nc">Control</span><span class="w"> </span><span class="nc">Field</span><span class="w"> </span><span class="mi">1</span><span class="w">                       </span><span class="o">|</span><span class="w"> </span><span class="nc">Control</span><span class="w"> </span><span class="nc">Field</span><span class="w"> </span><span class="mi">2</span><span class="w">                       </span><span class="o">|</span><span class="w">
+</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="w">
+</span><span class="o">|</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">14</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">13</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">9</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">8</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">
+</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">+</span></code></pre><p>The control field 1 has the following structure:</p><pre><code class="makeup elixir" translate="no"><span class="w"> </span><span class="nc">Bit</span><span class="w">  </span><span class="o">|</span><span class="w">
+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">-</span><span class="w">
+  </span><span class="mi">15</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="nc">Frame</span><span class="w"> </span><span class="nc">Type</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">extended</span><span class="w"> </span><span class="n">frame</span><span class="w">
+      </span><span class="o">|</span><span class="w">               </span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">standard</span><span class="w"> </span><span class="n">frame</span><span class="w">
+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">-</span><span class="w">
+  </span><span class="mi">14</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="nc">Reserved</span><span class="w">
+      </span><span class="o">|</span><span class="w">
+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">-</span><span class="w">
+  </span><span class="mi">13</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="nc">Repeat</span><span class="w"> </span><span class="nc">Flag</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repeat</span><span class="w"> </span><span class="n">frame</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">medium</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">case</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="p" data-group-id="4108630528-1">(</span><span class="ow">or</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="ss">receive</span><span class="p">:</span><span class="w"> </span><span class="n">repeated</span><span class="p" data-group-id="4108630528-1">)</span><span class="w">
+      </span><span class="o">|</span><span class="w">               </span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="4108630528-2">do</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">repeat</span><span class="w"> </span><span class="p" data-group-id="4108630528-3">(</span><span class="ow">or</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="ss">receive</span><span class="p">:</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">repeated</span><span class="p" data-group-id="4108630528-3">)</span><span class="w">
+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">-</span><span class="w">
+  </span><span class="mi">12</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="nc">System</span><span class="w"> </span><span class="nc">Broadcast</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">system</span><span class="w"> </span><span class="n">broadcast</span><span class="w">
+      </span><span class="o">|</span><span class="w">                    </span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">broadcast</span><span class="w">
+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">-</span><span class="w">
+  </span><span class="mi">11</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="nc">Priority</span><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">system</span><span class="w"> </span><span class="p" data-group-id="4108630528-4">(</span><span class="n">reserved</span><span class="p" data-group-id="4108630528-4">)</span><span class="w">
+      </span><span class="o">|</span><span class="w">               </span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normal</span><span class="w"> </span><span class="p" data-group-id="4108630528-5">(</span><span class="n">also</span><span class="w"> </span><span class="n">called</span><span class="w"> </span><span class="n">alarm</span><span class="w"> </span><span class="n">priority</span><span class="p" data-group-id="4108630528-5">)</span><span class="w">
+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="w">               </span><span class="mi">2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">urgent</span><span class="w"> </span><span class="p" data-group-id="4108630528-6">(</span><span class="n">also</span><span class="w"> </span><span class="n">called</span><span class="w"> </span><span class="n">high</span><span class="w"> </span><span class="n">priority</span><span class="p" data-group-id="4108630528-6">)</span><span class="w">
+  </span><span class="mi">10</span><span class="w">  </span><span class="o">|</span><span class="w">               </span><span class="mi">3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">low</span><span class="w">
+      </span><span class="o">|</span><span class="w">
+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">-</span><span class="w">
+   </span><span class="mi">9</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="nc">Acknowledge</span><span class="w"> </span><span class="nc">Request</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="nc">ACK</span><span class="w"> </span><span class="n">requested</span><span class="w">
+      </span><span class="o">|</span><span class="w"> </span><span class="p" data-group-id="4108630528-7">(</span><span class="nc">L_Data</span><span class="o">.</span><span class="n">req</span><span class="p" data-group-id="4108630528-7">)</span><span class="w">          </span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">ACK</span><span class="w"> </span><span class="n">requested</span><span class="w">
+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">-</span><span class="w">
+   </span><span class="mi">8</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="nc">Confirm</span><span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">error</span><span class="w">
+      </span><span class="o">|</span><span class="w"> </span><span class="p" data-group-id="4108630528-8">(</span><span class="nc">L_Data</span><span class="o">.</span><span class="n">con</span><span class="p" data-group-id="4108630528-8">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">error</span><span class="w">
+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">-</span></code></pre><p>The control field 2 has the following structure:</p><pre><code class="makeup elixir" translate="no"><span class="w"> </span><span class="nc">Bit</span><span class="w">  </span><span class="o">|</span><span class="w">
+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">-</span><span class="w">
+   </span><span class="mi">7</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="nc">Destination</span><span class="w"> </span><span class="nc">Address</span><span class="w"> </span><span class="nc">Type</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">individual</span><span class="w"> </span><span class="n">address</span><span class="w">
+      </span><span class="o">|</span><span class="w">                          </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="n">address</span><span class="w">
+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">-</span><span class="w">
+ </span><span class="mi">6</span><span class="o">-</span><span class="mi">4</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="nc">Hop</span><span class="w"> </span><span class="nc">Count</span><span class="w"> </span><span class="p" data-group-id="2044820966-1">(</span><span class="mi">0</span><span class="o">-</span><span class="mi">7</span><span class="p" data-group-id="2044820966-1">)</span><span class="w">
+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">-</span><span class="w">
+ </span><span class="mi">3</span><span class="o">-</span><span class="mi">0</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="nc">Extended</span><span class="w"> </span><span class="nc">Frame</span><span class="w"> </span><span class="nc">Format</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">standard</span><span class="w"> </span><span class="n">frame</span><span class="w">
+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">+</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">--</span><span class="o">-</span></code></pre>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#t:t/0" translate="no">t()</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>The KNX cEMI control field. It is a bitfield. See the module doc.</p></div>
+
+      </div>
+
+  </div>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#assert_name/2" translate="no">assert_name(atom1, atom2)</a>
+
+        </div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#by_name/2" translate="no">by_name(atom1, atom2)</a>
+
+        </div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#by_value/2" translate="no">by_value(atom, int)</a>
+
+        </div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#explain/1" translate="no">explain(control_field)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Explains the given control field. This returns an explain string.
+You may want to pipe the string into <a href="https://hexdocs.pm/elixir/IO.html#puts/2"><code class="inline">IO.puts/2</code></a>.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#has_ack_requested_bit/1" translate="no">has_ack_requested_bit(value)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Checks if the given cEMI Control Field has the ACK rqeuested bit set. Only relevant for <code class="inline">L_Data.req</code> frames.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#has_do_not_repeat/1" translate="no">has_do_not_repeat(value)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Checks if the given cEMI Control Field has the do not repeat flag bit set (do not repeat on medium error).</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#has_error_bit/1" translate="no">has_error_bit(value)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Checks if the given cEMI Control Field has the error bit set (confirm = 1 =&gt; error). Only relevant for <code class="inline">L_Data.con</code> frames.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#is_broadcast/1" translate="no">is_broadcast(value)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Checks if the given cEMI Control Field has the broadcast bit set.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#is_destination_group/1" translate="no">is_destination_group(value)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Checks if the given cEMI Control Field has the destination address type bit set to group.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#is_destination_individual/1" translate="no">is_destination_individual(value)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Checks if the given cEMI Control Field has the destination address type bit set to individual.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#is_extended_frame/1" translate="no">is_extended_frame(value)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Checks if the given cEMI Control Field has the extended frame bit set.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#macro_assert_name/2" translate="no">macro_assert_name(atom1, atom2)</a>
+
+        </div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#macro_by_name/2" translate="no">macro_by_name(atom1, atom2)</a>
+
+        </div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#macro_by_value/2" translate="no">macro_by_value(atom, int)</a>
+
+        </div>
+
+      </div>
+
+  </div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Types
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">t()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> t() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+
+      </div>
+
+<p>The KNX cEMI control field. It is a bitfield. See the module doc.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="assert_name/2">
+
+  <div class="detail-header">
+    <a href="#assert_name/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">assert_name(atom1, atom2)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="by_name/2">
+
+  <div class="detail-header">
+    <a href="#by_name/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">by_name(atom1, atom2)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="by_value/2">
+
+  <div class="detail-header">
+    <a href="#by_value/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">by_value(atom, int)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="explain/1">
+
+  <div class="detail-header">
+    <a href="#explain/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">explain(control_field)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> explain(<a href="#t:t/0">t</a>()) :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
+
+      </div>
+
+<p>Explains the given control field. This returns an explain string.
+You may want to pipe the string into <a href="https://hexdocs.pm/elixir/IO.html#puts/2"><code class="inline">IO.puts/2</code></a>.</p><p>Example output:</p><pre><code class="makeup elixir" translate="no"><span class="nc">Control</span><span class="w"> </span><span class="nc">Field</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="w">
+  </span><span class="nc">Bit</span><span class="w">   </span><span class="mi">0</span><span class="o">-</span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="nc">Extended</span><span class="w"> </span><span class="nc">Frame</span><span class="w"> </span><span class="ss">Format</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p" data-group-id="9312738085-1">(</span><span class="n">used</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nc">LTE</span><span class="p" data-group-id="9312738085-1">)</span><span class="w">
+  </span><span class="nc">Bit</span><span class="w">   </span><span class="mi">4</span><span class="o">-</span><span class="mi">6</span><span class="p">:</span><span class="w"> </span><span class="nc">Hop</span><span class="w"> </span><span class="ss">Count</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+  </span><span class="nc">Bit</span><span class="w">     </span><span class="mi">7</span><span class="p">:</span><span class="w"> </span><span class="nc">Destination</span><span class="w"> </span><span class="nc">Address</span><span class="w"> </span><span class="ss">Type</span><span class="p">:</span><span class="w"> </span><span class="n">group</span><span class="w">
+
+</span><span class="nc">Control</span><span class="w"> </span><span class="nc">Field</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w">
+  </span><span class="nc">Bit</span><span class="w">     </span><span class="mi">8</span><span class="p">:</span><span class="w"> </span><span class="nc">Confirm</span><span class="w"> </span><span class="p" data-group-id="9312738085-2">(</span><span class="nc">L_Data</span><span class="o">.</span><span class="n">con</span><span class="p" data-group-id="9312738085-2">)</span><span class="p">:</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">error</span><span class="w">
+  </span><span class="nc">Bit</span><span class="w">     </span><span class="mi">9</span><span class="p">:</span><span class="w"> </span><span class="nc">ACK</span><span class="w"> </span><span class="ss">Requested</span><span class="p">:</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="nc">ACK</span><span class="w"> </span><span class="n">requested</span><span class="w">
+  </span><span class="nc">Bit</span><span class="w"> </span><span class="mi">10</span><span class="o">+</span><span class="mi">11</span><span class="p">:</span><span class="w"> </span><span class="ss">Priority</span><span class="p">:</span><span class="w"> </span><span class="n">low</span><span class="w">
+  </span><span class="nc">Bit</span><span class="w">    </span><span class="mi">12</span><span class="p">:</span><span class="w"> </span><span class="nc">System</span><span class="w"> </span><span class="ss">Broadcast</span><span class="p">:</span><span class="w"> </span><span class="n">no</span><span class="w">
+  </span><span class="nc">Bit</span><span class="w">    </span><span class="mi">13</span><span class="p">:</span><span class="w"> </span><span class="nc">Do</span><span class="o">-</span><span class="nc">Not</span><span class="o">-</span><span class="nc">Repeat</span><span class="o">/</span><span class="nc">Original</span><span class="w"> </span><span class="ss">Flag</span><span class="p">:</span><span class="w"> </span><span class="n">yes</span><span class="w">
+  </span><span class="nc">Bit</span><span class="w">    </span><span class="mi">14</span><span class="p">:</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="n">reserved</span><span class="w"> </span><span class="o">--</span><span class="w">
+  </span><span class="nc">Bit</span><span class="w">    </span><span class="mi">15</span><span class="p">:</span><span class="w"> </span><span class="nc">Frame</span><span class="w"> </span><span class="ss">Type</span><span class="p">:</span><span class="w"> </span><span class="n">standard</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="has_ack_requested_bit/1">
+
+  <div class="detail-header">
+    <a href="#has_ack_requested_bit/1" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">has_ack_requested_bit(value)</h1>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Checks if the given cEMI Control Field has the ACK rqeuested bit set. Only relevant for <code class="inline">L_Data.req</code> frames.</p>
+  </section>
+</section>
+<section class="detail" id="has_do_not_repeat/1">
+
+  <div class="detail-header">
+    <a href="#has_do_not_repeat/1" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">has_do_not_repeat(value)</h1>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Checks if the given cEMI Control Field has the do not repeat flag bit set (do not repeat on medium error).</p>
+  </section>
+</section>
+<section class="detail" id="has_error_bit/1">
+
+  <div class="detail-header">
+    <a href="#has_error_bit/1" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">has_error_bit(value)</h1>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Checks if the given cEMI Control Field has the error bit set (confirm = 1 =&gt; error). Only relevant for <code class="inline">L_Data.con</code> frames.</p>
+  </section>
+</section>
+<section class="detail" id="is_broadcast/1">
+
+  <div class="detail-header">
+    <a href="#is_broadcast/1" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">is_broadcast(value)</h1>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Checks if the given cEMI Control Field has the broadcast bit set.</p>
+  </section>
+</section>
+<section class="detail" id="is_destination_group/1">
+
+  <div class="detail-header">
+    <a href="#is_destination_group/1" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">is_destination_group(value)</h1>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Checks if the given cEMI Control Field has the destination address type bit set to group.</p>
+  </section>
+</section>
+<section class="detail" id="is_destination_individual/1">
+
+  <div class="detail-header">
+    <a href="#is_destination_individual/1" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">is_destination_individual(value)</h1>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Checks if the given cEMI Control Field has the destination address type bit set to individual.</p>
+  </section>
+</section>
+<section class="detail" id="is_extended_frame/1">
+
+  <div class="detail-header">
+    <a href="#is_extended_frame/1" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">is_extended_frame(value)</h1>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Checks if the given cEMI Control Field has the extended frame bit set.</p>
+  </section>
+</section>
+<section class="detail" id="macro_assert_name/2">
+
+  <div class="detail-header">
+    <a href="#macro_assert_name/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">macro_assert_name(atom1, atom2)</h1>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="macro_by_name/2">
+
+  <div class="detail-header">
+    <a href="#macro_by_name/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">macro_by_name(atom1, atom2)</h1>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="macro_by_value/2">
+
+  <div class="detail-header">
+    <a href="#macro_by_value/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">macro_by_value(atom, int)</h1>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+
+        <p>
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.28.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
