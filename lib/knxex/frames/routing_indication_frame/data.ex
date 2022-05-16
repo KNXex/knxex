@@ -13,7 +13,7 @@ defmodule KNXex.Frames.RoutingIndicationFrame.Data do
   KNX Application Layer Protocol Control Information (APCI).
 
   The APCI defines the service.
-  See also <https://support.KNXex.org/hc/en-us/articles/115003188529-Payload>.
+  See also <https://support.knx.org/hc/en-us/articles/115003188529-Payload>.
   """
   @type apci() ::
           :group_read

@@ -2,7 +2,7 @@ defmodule KNXex.TPCI do
   @moduledoc """
   KNX Transport Layer Protocol Control Information (TPCI).
 
-  See also <https://support.KNXex.org/hc/en-us/articles/115003188529-Payload>.
+  See also <https://support.knx.org/hc/en-us/articles/115003188529-Payload>.
   """
 
   alias KNXex.Constants

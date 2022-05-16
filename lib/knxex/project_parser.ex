@@ -90,8 +90,8 @@ defmodule KNXex.ProjectParser do
   The following options are available:
     - `only: [String.t()]` - Only the specified manufacturers will be parsed, the manufacturer ID, i.e. `M-0001`, is required.
     - `exclude: [String.t()]` - The specified manufacturers will be excluded (see `only`), `only` and `exclude` are mutually exclusive.
-    - `parallel: boolean()` - Whether to parse the manufacturers in parallel using `Task.async_stream/5` (default: `false`).
-    - `parallel_timeout: pos_integer()` - The timeout for parallel parsing (default: `60_000`ms).
+    - `parallel: boolean()` - Whether to parse the manufacturers in parallel using `Task.async_stream/5` (defaults to `false`).
+    - `parallel_timeout: pos_integer()` - The timeout for parallel parsing (defaults to `60_000`ms).
 
   This function will raise on errors.
 
