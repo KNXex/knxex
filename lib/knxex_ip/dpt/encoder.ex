@@ -7,6 +7,10 @@ defmodule KNXexIP.DPT.Encoder do
 
   defmacro __before_compile__(_env) do
     quote do
+      @doc """
+      Encodes the value according to the DPT.
+      """
+      @spec encode(term(), String.t()) :: {:ok, binary()} | {:error, term()}
       def encode(data, dpt), do: unquote(__MODULE__).encode(data, dpt)
     end
   end
@@ -20,9 +24,6 @@ defmodule KNXexIP.DPT.Encoder do
   defguardp is_float_between(value, min, max)
             when is_float(value) and value >= min and value <= max
 
-  @doc """
-  Encodes the value according to the DPT.
-  """
   @spec encode(term(), String.t()) :: {:ok, binary()} | {:error, term()}
   def encode(value, datapoint_type)
 

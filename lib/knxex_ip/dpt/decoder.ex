@@ -7,6 +7,10 @@ defmodule KNXexIP.DPT.Decoder do
 
   defmacro __before_compile__(_env) do
     quote do
+      @doc """
+      Decodes the value according to the DPT.
+      """
+      @spec decode(binary(), String.t()) :: {:ok, term()} | {:error, term()}
       def decode(data, dpt), do: unquote(__MODULE__).decode(data, dpt)
     end
   end
@@ -16,9 +20,6 @@ defmodule KNXexIP.DPT.Decoder do
   defguardp is_integer_between(value, min, max)
             when is_integer(value) and value >= min and value <= max
 
-  @doc """
-  Decodes the value according to the DPT.
-  """
   @spec decode(binary(), String.t()) :: {:ok, term()} | {:error, term()}
   def decode(value, datapoint_type)
 
