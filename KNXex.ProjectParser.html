@@ -96,6 +96,11 @@ knxex
 </button>
 
 
+    <a href="https://github.com/KNXex/knxex/blob/main/lib/knxex/project_parser.ex#L1" title="View Source" class="view-source" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
   <span translate="no">KNXex.ProjectParser</span> 
   <small class="app-vsn" translate="no">(knxex v0.1.0)</small>
 
@@ -166,6 +171,11 @@ Functions
     </a>
     <h1 class="signature" translate="no">parse(path, opts \\ [])</h1>
 
+      <a href="https://github.com/KNXex/knxex/blob/main/lib/knxex/project_parser.ex#L41" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
 
   </div>
 
@@ -191,6 +201,11 @@ Functions
     </a>
     <h1 class="signature" translate="no">parse_manufacturers(path, opts \\ [])</h1>
 
+      <a href="https://github.com/KNXex/knxex/blob/main/lib/knxex/project_parser.ex#L181" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
 
   </div>
 
@@ -212,14 +227,14 @@ Functions
 
       </div>
 
-<p>Parses a KNX project file (ETS .knxproj), extracting manufacturer information and returns a map.</p><p>The following informations get extracted:</p><ul><li>Application Programs (basic information and communication objects)</li><li>Hardware &amp; products (basic information)</li><li>Hardware-to-Program mappings</li></ul><p>The following options are available:</p><ul><li><code class="inline">only: [String.t()]</code> - Only the specified manufacturers will be parsed, the manufacturer ID, i.e. <code class="inline">M-0001</code>, is required.</li><li><code class="inline">exclude: [String.t()]</code> - The specified manufacturers will be excluded (see <code class="inline">only</code>), <code class="inline">only</code> and <code class="inline">exclude</code> are mutually exclusive.</li><li><code class="inline">parallel: boolean()</code> - Whether to parse the manufacturers in parallel using <a href="https://hexdocs.pm/elixir/Task.html#async_stream/5"><code class="inline">Task.async_stream/5</code></a> (defaults to <code class="inline">false</code>).</li><li><code class="inline">parallel_timeout: pos_integer()</code> - The timeout for parallel parsing (defaults to <code class="inline">60_000</code>ms).</li></ul><p>This function will raise on errors.</p><p>Example output:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="6661395274-1">%{</span><span class="w">
-  </span><span class="s">&quot;M-00C9&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="6661395274-2">%{</span><span class="w">
-    </span><span class="ss">application_programs</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6661395274-3">%{</span><span class="w">
-      </span><span class="s">&quot;M-00C9_A-FF14-20-223D&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="6661395274-4">%</span><span class="nc" data-group-id="6661395274-4">KNXex.EtsProject.Manufacturer.ApplicationProgram</span><span class="p" data-group-id="6661395274-4">{</span><span class="w">
+<p>Parses a KNX project file (ETS .knxproj), extracting manufacturer information and returns a map.</p><p>The following informations get extracted:</p><ul><li>Application Programs (basic information and communication objects)</li><li>Hardware &amp; products (basic information)</li><li>Hardware-to-Program mappings</li></ul><p>The following options are available:</p><ul><li><code class="inline">only: [String.t()]</code> - Only the specified manufacturers will be parsed, the manufacturer ID, i.e. <code class="inline">M-0001</code>, is required.</li><li><code class="inline">exclude: [String.t()]</code> - The specified manufacturers will be excluded (see <code class="inline">only</code>), <code class="inline">only</code> and <code class="inline">exclude</code> are mutually exclusive.</li><li><code class="inline">parallel: boolean()</code> - Whether to parse the manufacturers in parallel using <a href="https://hexdocs.pm/elixir/Task.html#async_stream/5"><code class="inline">Task.async_stream/5</code></a> (defaults to <code class="inline">false</code>).</li><li><code class="inline">parallel_timeout: pos_integer()</code> - The timeout for parallel parsing (defaults to <code class="inline">60_000</code>ms).</li></ul><p>This function will raise on errors.</p><p>Example output:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="5692263024-1">%{</span><span class="w">
+  </span><span class="s">&quot;M-00C9&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="5692263024-2">%{</span><span class="w">
+    </span><span class="ss">application_programs</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5692263024-3">%{</span><span class="w">
+      </span><span class="s">&quot;M-00C9_A-FF14-20-223D&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="5692263024-4">%</span><span class="nc" data-group-id="5692263024-4">KNXex.EtsProject.Manufacturer.ApplicationProgram</span><span class="p" data-group-id="5692263024-4">{</span><span class="w">
         </span><span class="ss">app_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;65300&quot;</span><span class="p">,</span><span class="w">
         </span><span class="ss">app_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;32&quot;</span><span class="p">,</span><span class="w">
-        </span><span class="ss">com_objects</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6661395274-5">%{</span><span class="w">
-          </span><span class="s">&quot;O-12&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="6661395274-6">%</span><span class="nc" data-group-id="6661395274-6">KNXex.EtsProject.Topology.Device.ComObject</span><span class="p" data-group-id="6661395274-6">{</span><span class="w">
+        </span><span class="ss">com_objects</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5692263024-5">%{</span><span class="w">
+          </span><span class="s">&quot;O-12&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="5692263024-6">%</span><span class="nc" data-group-id="5692263024-6">KNXex.EtsProject.Topology.Device.ComObject</span><span class="p" data-group-id="5692263024-6">{</span><span class="w">
             </span><span class="ss">communication_flag</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w">
             </span><span class="ss">description</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
             </span><span class="ss">dpt</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
@@ -235,8 +250,8 @@ Functions
             </span><span class="ss">transmit_flag</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
             </span><span class="ss">update_flag</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
             </span><span class="ss">write_flag</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="w">
-          </span><span class="p" data-group-id="6661395274-6">}</span><span class="w">
-        </span><span class="p" data-group-id="6661395274-5">}</span><span class="p">,</span><span class="w">
+          </span><span class="p" data-group-id="5692263024-6">}</span><span class="w">
+        </span><span class="p" data-group-id="5692263024-5">}</span><span class="p">,</span><span class="w">
         </span><span class="ss">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;KNX TH-UP&quot;</span><span class="p">,</span><span class="w">
         </span><span class="ss">dynamic_table_management</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w">
         </span><span class="ss">hash</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Iss9qvKKsV5qnWizDXWVPQ==&quot;</span><span class="p">,</span><span class="w">
@@ -245,19 +260,19 @@ Functions
         </span><span class="ss">mask_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MV-0701&quot;</span><span class="p">,</span><span class="w">
         </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;KNX App_20&quot;</span><span class="p">,</span><span class="w">
         </span><span class="ss">program_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ApplicationProgram&quot;</span><span class="w">
-      </span><span class="p" data-group-id="6661395274-4">}</span><span class="w">
-    </span><span class="p" data-group-id="6661395274-3">}</span><span class="p">,</span><span class="w">
-    </span><span class="ss">hardware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6661395274-7">%{</span><span class="w">
-      </span><span class="s">&quot;M-00C9_H-70121-1&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="6661395274-8">%</span><span class="nc" data-group-id="6661395274-8">KNXex.EtsProject.Manufacturer.Hardware</span><span class="p" data-group-id="6661395274-8">{</span><span class="w">
+      </span><span class="p" data-group-id="5692263024-4">}</span><span class="w">
+    </span><span class="p" data-group-id="5692263024-3">}</span><span class="p">,</span><span class="w">
+    </span><span class="ss">hardware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5692263024-7">%{</span><span class="w">
+      </span><span class="s">&quot;M-00C9_H-70121-1&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="5692263024-8">%</span><span class="nc" data-group-id="5692263024-8">KNXex.EtsProject.Manufacturer.Hardware</span><span class="p" data-group-id="5692263024-8">{</span><span class="w">
         </span><span class="ss">bus_current</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-        </span><span class="ss">hardware2programs</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6661395274-9">%{</span><span class="w">
-          </span><span class="s">&quot;M-00C9_H-70121-1_HP-FF14-20-223D&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="6661395274-10">%</span><span class="nc" data-group-id="6661395274-10">KNXex.EtsProject.Manufacturer.Hardware.Hardware2Program</span><span class="p" data-group-id="6661395274-10">{</span><span class="w">
+        </span><span class="ss">hardware2programs</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5692263024-9">%{</span><span class="w">
+          </span><span class="s">&quot;M-00C9_H-70121-1_HP-FF14-20-223D&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="5692263024-10">%</span><span class="nc" data-group-id="5692263024-10">KNXex.EtsProject.Manufacturer.Hardware.Hardware2Program</span><span class="p" data-group-id="5692263024-10">{</span><span class="w">
             </span><span class="ss">application_program_refid</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;M-00C9_A-FF14-20-223D&quot;</span><span class="p">,</span><span class="w">
             </span><span class="ss">hash</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SdI1o0jhKfnXwWt3Gf3qOvC/z4U=&quot;</span><span class="p">,</span><span class="w">
             </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;M-00C9_H-70121-1_HP-FF14-20-223D&quot;</span><span class="p">,</span><span class="w">
-            </span><span class="ss">medium_types</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6661395274-11">[</span><span class="ss">:tp</span><span class="p" data-group-id="6661395274-11">]</span><span class="w">
-          </span><span class="p" data-group-id="6661395274-10">}</span><span class="w">
-        </span><span class="p" data-group-id="6661395274-9">}</span><span class="p">,</span><span class="w">
+            </span><span class="ss">medium_types</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5692263024-11">[</span><span class="ss">:tp</span><span class="p" data-group-id="5692263024-11">]</span><span class="w">
+          </span><span class="p" data-group-id="5692263024-10">}</span><span class="w">
+        </span><span class="p" data-group-id="5692263024-9">}</span><span class="p">,</span><span class="w">
         </span><span class="ss">has_application_program</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w">
         </span><span class="ss">has_individual_address</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w">
         </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;M-00C9_H-70121-1&quot;</span><span class="p">,</span><span class="w">
@@ -265,22 +280,22 @@ Functions
         </span><span class="ss">is_ip_enabled</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
         </span><span class="ss">is_power_supply</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
         </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;KNX T-AP&quot;</span><span class="p">,</span><span class="w">
-        </span><span class="ss">products</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6661395274-12">%{</span><span class="w">
-          </span><span class="s">&quot;M-00C9_H-70121-1_P-70121&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="6661395274-13">%</span><span class="nc" data-group-id="6661395274-13">KNXex.EtsProject.Manufacturer.Hardware.Product</span><span class="p" data-group-id="6661395274-13">{</span><span class="w">
+        </span><span class="ss">products</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5692263024-12">%{</span><span class="w">
+          </span><span class="s">&quot;M-00C9_H-70121-1_P-70121&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="5692263024-13">%</span><span class="nc" data-group-id="5692263024-13">KNXex.EtsProject.Manufacturer.Hardware.Product</span><span class="p" data-group-id="5692263024-13">{</span><span class="w">
             </span><span class="ss">hash</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;H1+DOySrz+UUcxCBvF0s8MIyIak=&quot;</span><span class="p">,</span><span class="w">
             </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;M-00C9_H-70121-1_P-70121&quot;</span><span class="p">,</span><span class="w">
             </span><span class="ss">is_rail_mounted</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
             </span><span class="ss">order_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;70121&quot;</span><span class="p">,</span><span class="w">
             </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;KNX T-AP&quot;</span><span class="p">,</span><span class="w">
             </span><span class="ss">width</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-          </span><span class="p" data-group-id="6661395274-13">}</span><span class="w">
-        </span><span class="p" data-group-id="6661395274-12">}</span><span class="p">,</span><span class="w">
+          </span><span class="p" data-group-id="5692263024-13">}</span><span class="w">
+        </span><span class="p" data-group-id="5692263024-12">}</span><span class="p">,</span><span class="w">
         </span><span class="ss">serialnum</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;70121&quot;</span><span class="p">,</span><span class="w">
         </span><span class="ss">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="w">
-      </span><span class="p" data-group-id="6661395274-8">}</span><span class="w">
-    </span><span class="p" data-group-id="6661395274-7">}</span><span class="w">
-  </span><span class="p" data-group-id="6661395274-2">}</span><span class="w">
-</span><span class="p" data-group-id="6661395274-1">}</span></code></pre>
+      </span><span class="p" data-group-id="5692263024-8">}</span><span class="w">
+    </span><span class="p" data-group-id="5692263024-7">}</span><span class="w">
+  </span><span class="p" data-group-id="5692263024-2">}</span><span class="w">
+</span><span class="p" data-group-id="5692263024-1">}</span></code></pre>
   </section>
 </section>
 
