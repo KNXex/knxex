@@ -347,8 +347,7 @@ defmodule KNXex.ProjectParser.Topology do
                   |> :binary.list_to_bin()
                   |> String.to_integer()
 
-                address =
-                  KNXex.IndividualAddress.make(area_address, line_address, device_address)
+                address = KNXex.IndividualAddress.make(area_address, line_address, device_address)
 
                 %{acc | address: address}
 
