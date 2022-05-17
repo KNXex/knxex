@@ -12,7 +12,8 @@ defmodule KNXex.MixProject do
       dialyzer: [
         ignore_warnings: "dialyzer.ignore-warnings",
         plt_add_apps: [:mix]
-      ]
+      ],
+      source_url: "https://github.com/KNXex/knxex"
     ]
   end
 
