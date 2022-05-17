@@ -197,7 +197,7 @@ defmodule KNXex.MulticastClient do
   end
 
   @doc """
-  Sends a `GroupValueRead` to `group_address`. Waits up to `get_opts_timeout()` for the response.
+  Sends a `GroupValueRead` to `group_address`. Waits up to `timeout` for the response.
   Utilizes a `Task` to subscribe temporarily to events.
   """
   @spec read_group_address(KNXex.GroupAddress.t(), Keyword.t()) ::
