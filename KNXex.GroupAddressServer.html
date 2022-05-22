@@ -350,7 +350,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">add(group_address, dpt, opts \\ [])</h1>
 
-      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L311" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L314" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -401,7 +401,7 @@ Unknown group addresses can not be used to send or receive telegrams.</p><p>The 
     </a>
     <h1 class="signature" translate="no">create_ets_table()</h1>
 
-      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L241" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L244" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -432,7 +432,7 @@ This would prevent losing the whole table if one server crashes.</p><p>The ETS t
     </a>
     <h1 class="signature" translate="no">filter_gpa_hydration_by_read_flag(ets_project, opts \\ [])</h1>
 
-      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L451" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L448" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -465,7 +465,7 @@ This helps not having to parse the ETS project file again. If not given, it will
     </a>
     <h1 class="signature" translate="no">get_group_addresses()</h1>
 
-      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L295" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L298" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -495,7 +495,7 @@ This helps not having to parse the ETS project file again. If not given, it will
     </a>
     <h1 class="signature" translate="no">read(group_address, opts \\ [])</h1>
 
-      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L359" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L356" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -507,16 +507,8 @@ This helps not having to parse the ETS project file again. If not given, it will
 
       <div class="specs">
 
-          <pre translate="no"><span class="attribute">@spec</span> read(<a href="KNXex.GroupAddress.html#t:t/0">KNXex.GroupAddress.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>()) ::
-  {:ok,
-   %KNXex.GroupAddressServer.GroupAddressData{
-     address: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
-     last_update: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
-     name: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
-     type: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
-     value: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()
-   }}
-  | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+          <pre translate="no"><span class="attribute">@spec</span> read(<a href="KNXex.GroupAddress.html#t:t/0">KNXex.GroupAddress.t</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) ::
+  {:ok, <a href="KNXex.GroupAddressServer.GroupAddressData.html#t:t/0">KNXex.GroupAddressServer.GroupAddressData.t</a>()} | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
 
       </div>
 
@@ -534,7 +526,7 @@ regardless whether the value is available or not.</p><p>The following options ar
     </a>
     <h1 class="signature" translate="no">remove(group_address)</h1>
 
-      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L341" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L338" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -564,7 +556,7 @@ regardless whether the value is available or not.</p><p>The following options ar
     </a>
     <h1 class="signature" translate="no">start_link(opts \\ [])</h1>
 
-      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L177" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L180" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -597,7 +589,7 @@ The only supported KNX interface modules are <code class="inline">MulticastClien
     </a>
     <h1 class="signature" translate="no">subscribe(pid, opts \\ [])</h1>
 
-      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L414" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L411" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -625,7 +617,7 @@ The only supported KNX interface modules are <code class="inline">MulticastClien
     </a>
     <h1 class="signature" translate="no">to_hydration_state()</h1>
 
-      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L261" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L264" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -655,7 +647,7 @@ The only supported KNX interface modules are <code class="inline">MulticastClien
     </a>
     <h1 class="signature" translate="no">unsubscribe(pid, opts \\ [])</h1>
 
-      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L424" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L421" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -683,7 +675,7 @@ The only supported KNX interface modules are <code class="inline">MulticastClien
     </a>
     <h1 class="signature" translate="no">wait_for_startup(opts)</h1>
 
-      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L283" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L286" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -714,7 +706,7 @@ This is useful during hydration, to wait until the hydration is completed and av
     </a>
     <h1 class="signature" translate="no">write(group_address, value, opts \\ [])</h1>
 
-      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L400" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/KNXex/knxex/blob/master/lib/knxex/group_address_server.ex#L397" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
