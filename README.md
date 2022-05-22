@@ -6,7 +6,7 @@ This library offers to parse a ETS project export to be able to get all defined 
 
 Together with the `knxnet_ip` library, it also offers a KNXnet/IP tunnelling client, based on their tunnel behaviour module.
 
-A GenStage producer is available to consume receive KNX telegrams. A group address server listens for KNX telegrams and stores the last group address values in ETS, so you can always fetch the value of a group address at a later time.
+A GenStage producer is available to consume and further dispatch received KNX telegrams. A group address server listens for KNX telegrams and stores the last group address values in ETS, so you can always fetch the value of a group address at a later time.
 
 ## Installation
 

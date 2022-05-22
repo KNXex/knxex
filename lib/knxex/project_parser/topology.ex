@@ -23,7 +23,7 @@ defmodule KNXex.ProjectParser.Topology do
             ) ::
               KNXex.EtsProject.t()
       defp parse_topology(xml_topology, ets_project, parent_area, parent_line, opts) do
-        {ets_project, _, _} =
+        {ets_project, _area, _line} =
           Enum.reduce(
             xml_topology,
             {ets_project, parent_area, parent_line},

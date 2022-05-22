@@ -33,6 +33,9 @@ defmodule KNXex.GroupAddressServer do
   defmodule State do
     @moduledoc false
 
+    @typedoc false
+    @opaque t :: %__MODULE__{}
+
     @fields [:datastore, :knx_module, :knx_server, :subscriber, :opts]
     @enforce_keys @fields
     defstruct @fields
@@ -322,16 +325,10 @@ defmodule KNXex.GroupAddressServer do
 
     if opts[:hydrate] == true do
       Logger.debug("Reading group address #{group_address} for hydration")
-
-      new_opts = Keyword.put(opts, :timeout, get_opts_timeout())
-
-      case read(group_address, new_opts) do
-        {:ok, _val} -> :ok
-        term -> term
-      end
-    else
-      :ok
+      read(group_address, opts)
     end
+
+    :ok
   end
 
   @doc """
@@ -354,8 +351,8 @@ defmodule KNXex.GroupAddressServer do
   - `force_value_read: boolean()` - Optional. Specifies whether the group address must be read from the KNX bus before returning it (defaults to `false`).
   - `read_value_on_nil: boolean()` - Optional. Specifies whether the group address is read from the KNX bus before returning, if the value is nil (defaults to `false`).
   """
-  @spec read(KNXex.GroupAddress.t(), keyword) ::
-          {:ok, %GroupAddressData{}} | {:error, term()}
+  @spec read(KNXex.GroupAddress.t(), Keyword.t()) ::
+          {:ok, GroupAddressData.t()} | {:error, term()}
   def read(%KNXex.GroupAddress{} = group_address, opts \\ []) when is_list(opts) do
     case :ets.lookup(__MODULE__, group_address) do
       [{_key, %GroupAddressData{} = grpaddr}] ->

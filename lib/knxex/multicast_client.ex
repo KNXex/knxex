@@ -54,6 +54,9 @@ defmodule KNXex.MulticastClient do
   defmodule State do
     @moduledoc false
 
+    @typedoc false
+    @opaque t :: %__MODULE__{}
+
     @fields [
       :subscribers,
       :group_addresses,
@@ -569,7 +572,7 @@ defmodule KNXex.MulticastClient do
 
   #### Frame Handling ####
 
-  @spec handle_frame(KNXex.Frame.t(), %State{}) :: any()
+  @spec handle_frame(KNXex.Frame.t(), map()) :: any()
   defp handle_frame(
          %KNXex.Frame{
            request_type: Constants.macro_assert_name(:request_type, :routing_indication),

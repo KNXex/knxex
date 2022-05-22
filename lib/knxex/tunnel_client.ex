@@ -13,16 +13,19 @@ if Code.ensure_loaded?(KNXnetIP.Tunnel) do
     to call the `TunnelClient` identified by the `:name` (a PID or registered name), and an optional `:timeout` option (defaults to 5000).
     """
 
-    require Logger
     require KNXex
+    require Logger
 
-    alias KNXnetIP.{Telegram, Tunnel}
     alias KNXex
+    alias KNXnetIP.{Telegram, Tunnel}
 
     @behaviour Tunnel
 
     defmodule State do
       @moduledoc false
+
+      @typedoc false
+      @opaque t :: %__MODULE__{}
 
       defstruct [:subscribers, :group_addresses, :telegrams, :current_telegram, :connected, :opts]
     end
@@ -251,7 +254,7 @@ if Code.ensure_loaded?(KNXnetIP.Tunnel) do
     @impl true
     @doc false
     @spec init(map()) ::
-            {:ok, %State{}}
+            {:ok, map()}
     def init(opts) do
       state = %State{
         subscribers: [],
@@ -490,9 +493,9 @@ if Code.ensure_loaded?(KNXnetIP.Tunnel) do
 
     @impl true
     @doc false
-    @spec on_telegram_ack(%State{}) ::
-            {:ok, %State{}}
-            | {:send_telegram, binary(), %State{}}
+    @spec on_telegram_ack(map()) ::
+            {:ok, map()}
+            | {:send_telegram, binary(), map()}
     def on_telegram_ack(%State{} = state) do
       Logger.debug("Received KNX Tunnelling ACK")
 
@@ -538,9 +541,9 @@ if Code.ensure_loaded?(KNXnetIP.Tunnel) do
 
     @impl true
     @doc false
-    @spec on_telegram(binary(), %State{}) ::
-            {:ok, %State{}}
-            | {:send_telegram, binary(), %State{}}
+    @spec on_telegram(binary(), map()) ::
+            {:ok, map()}
+            | {:send_telegram, binary(), map()}
     def on_telegram(encoded_telegram, %State{} = state) do
       {:ok, telegram} = Telegram.decode(encoded_telegram)
 
@@ -552,9 +555,9 @@ if Code.ensure_loaded?(KNXnetIP.Tunnel) do
     end
 
     # Stores the telegram in the telegram list and sends it immediately, if possible.
-    @spec send_telegram_or_queue(Telegram.t(), %State{}) ::
-            {:reply, :ok, %State{}}
-            | {:send_telegram, binary(), :ok, %State{}}
+    @spec send_telegram_or_queue(Telegram.t(), map()) ::
+            {:reply, :ok, map()}
+            | {:send_telegram, binary(), :ok, map()}
     defp send_telegram_or_queue(
            %Telegram{} = telegram,
            %State{current_telegram: nil, connected: true} = state
@@ -582,8 +585,8 @@ if Code.ensure_loaded?(KNXnetIP.Tunnel) do
       {:reply, :ok, new_state}
     end
 
-    @spec handle_telegram(%Telegram{}, %State{}) ::
-            {:ok, %State{}} | {:send_telegram, %Telegram{}, %State{}}
+    @spec handle_telegram(Telegram.t(), map()) ::
+            {:ok, map()} | {:send_telegram, Telegram.t(), map()}
     defp handle_telegram(%Telegram{service: service} = telegram, %State{} = state)
          when service in [:group_write, :group_read, :group_response] do
       datapoint_type = state.group_addresses[telegram.destination]
@@ -639,8 +642,8 @@ if Code.ensure_loaded?(KNXnetIP.Tunnel) do
       check_for_new_telegram_send(state)
     end
 
-    @spec check_for_new_telegram_send(%State{}) ::
-            {:ok, %State{}} | {:send_telegram, binary(), %State{}}
+    @spec check_for_new_telegram_send(map()) ::
+            {:ok, map()} | {:send_telegram, binary(), map()}
     defp check_for_new_telegram_send(%State{connected: true} = state) do
       if state.current_telegram == nil and not :queue.is_empty(state.telegrams) do
         {new_telegram, _ref} = cur_telegram = :queue.head(state.telegrams)
@@ -667,7 +670,7 @@ if Code.ensure_loaded?(KNXnetIP.Tunnel) do
 
     # This is the callback function that handles the current telegram sending
     # for the `handle_telegram` function
-    # @spec handle_telegram_callback_current(%Telegram{}, %State{}) :: {%State{}, reference() | nil}
+    # @spec handle_telegram_callback_current(%Telegram{}, map()) :: {map(), reference() | nil}
     # defp handle_telegram_callback_current(%Telegram{service: service} = telegram, %State{} = state) do
     #   case state.current_telegram do
     #     {cur_telegram, ref} ->
