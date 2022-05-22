@@ -109,7 +109,7 @@ knxex
 
   <section id="moduledoc">
 <p>Reads the given KNX ETS project and generates a map of all group addresses to their Datapoint Type (DPT).
-This map can be used for the KNX Tunnel server.</p><p>Group addresses that do not specify a DPT are ignored.</p><p>The first argument must be given to specify the path to the ETS project.
+This map can be used for the KNX Multicast Client and KNX Tunnel Client.</p><p>Group addresses that do not specify a DPT are ignored.</p><p>The first argument must be given to specify the path to the ETS project.
 The second argument can be given to specify the path where to store the map (in <a href="https://hexdocs.pm/elixir/Inspect.html"><code class="inline">Inspect</code></a> format). If no target is given, the map is printed to stdout.</p><p>Info output is only generated when map is written to file, and not to stdout.</p>
   </section>
 
