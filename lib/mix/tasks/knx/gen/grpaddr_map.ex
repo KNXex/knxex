@@ -3,7 +3,7 @@ defmodule Mix.Tasks.KNX.Gen.GrpaddrMap do
 
   @moduledoc """
   Reads the given KNX ETS project and generates a map of all group addresses to their Datapoint Type (DPT).
-  This map can be used for the KNX Tunnel server.
+  This map can be used for the KNX Multicast Client and KNX Tunnel Client.
 
   Group addresses that do not specify a DPT are ignored.
 
