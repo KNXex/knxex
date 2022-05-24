@@ -12,13 +12,26 @@ defmodule KNXex.Macro do
   end
 
   defmacro defconstant(type, name, value) do
+    # All functions and macros are defined as without docs,
+    # as the docs would make no sense without the pattern matched
+    # function headers
     quote do
+      @doc false
       def assert_name(unquote(type), unquote(name)), do: unquote(name)
+
+      @doc false
       def by_name(unquote(type), unquote(name)), do: unquote(value)
+
+      @doc false
       def by_value(unquote(type), unquote(value)), do: unquote(name)
 
+      @doc false
       defmacro macro_assert_name(unquote(type), unquote(name)), do: unquote(name)
+
+      @doc false
       defmacro macro_by_name(unquote(type), unquote(name)), do: unquote(value)
+
+      @doc false
       defmacro macro_by_value(unquote(type), unquote(value)), do: unquote(name)
 
       @constants {unquote(type), unquote(name), unquote(value)}

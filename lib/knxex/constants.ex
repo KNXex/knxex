@@ -4,7 +4,6 @@ defmodule KNXex.Constants do
   """
 
   import KNXex.Macro
-  @before_compile KNXex.Macro
 
   # Header size 6 for KNXnet/IP protocol version 1.0 Constant
   defconstant(:knx, :header_size_protocol_10, 0x06)

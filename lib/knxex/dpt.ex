@@ -49,7 +49,6 @@ defmodule KNXex.DPT do
   """
 
   import KNXex.Macro
-  @before_compile KNXex.Macro
 
   # Most of the decoder and encoder code has been verbatim copied
   # from the KNXnet/IP library, so a huge shootout for them.

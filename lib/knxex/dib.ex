@@ -158,7 +158,7 @@ defmodule KNXex.DIB do
           {service_family_name(), version :: integer()}
         ]
   defp parse_supported_svc_families(<<family::size(8), version::size(8), rest::binary>>) do
-    [{Constants.by_name(:service_family, family), version} | parse_supported_svc_families(rest)]
+    [{Constants.by_value(:service_family, family), version} | parse_supported_svc_families(rest)]
   end
 
   defp parse_supported_svc_families(_rest) do
