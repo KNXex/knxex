@@ -35,5 +35,6 @@ npm-debug.log
 /priv/static/
 
 /.elixir_ls/
+/.lexical/
 /assets/package-lock.json
 mix.lock
