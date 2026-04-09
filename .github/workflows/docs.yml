@@ -10,8 +10,8 @@ jobs:
       - uses: actions/checkout@v6
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: '24.0'
-          elixir-version: '1.12'
+          otp-version: '27'
+          elixir-version: '1.19'
       - uses: actions/cache@v4
         with:
           path: deps
