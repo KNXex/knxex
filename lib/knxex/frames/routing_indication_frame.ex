@@ -91,7 +91,7 @@ defmodule KNXex.Frames.RoutingIndicationFrame do
               {:group, KNXex.GroupAddress.from_raw_address(dest_addr)}
 
             _any ->
-              {:individual, KNXex.IndividualAddress.from_raw_address(source_addr)}
+              {:individual, KNXex.IndividualAddress.from_raw_address(dest_addr)}
           end
 
         {tpci, apci, value} =
