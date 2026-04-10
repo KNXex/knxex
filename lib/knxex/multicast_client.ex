@@ -29,7 +29,7 @@ defmodule KNXex.MulticastClient do
   @knx_header_size Constants.macro_by_name(:knx, :header_size_protocol_10)
   @knx_protocol_version Constants.macro_by_name(:knx, :protocol_version_10)
 
-  @knx_send_apci 0x9CE0
+  @knx_send_apci 0xBCE0
 
   # TODO: Implement routing flow control
   # We should limit datagrams to 50 datagrams per second (as per specification),
